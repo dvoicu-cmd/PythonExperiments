@@ -20,8 +20,33 @@ class Canvas:
             outputStr = outputStr + strRow + '\n'
         print(outputStr)
 
-    def drawSquare(self,size):
-        square = Rectangle(size,size)
+    def drawRectangle(self,length,height):
+        rectangle = Rectangle(length,height)
+        
+        midPoint = self.getCanvasMid()
+        halfLength = int((rectangle.length/2))
+        halfHeight = int((rectangle.height/2))
+
+        topLeftCorner = [midPoint[0] - halfLength, midPoint[1] + halfHeight]
+        topRightCorner = [midPoint[0] + halfLength, midPoint[1] + halfHeight]
+        bottomRightCorner = [midPoint[0] + halfLength, midPoint[1] - halfHeight]
+        bottomLeftCorner = [midPoint[0] - halfLength, midPoint[1] - halfHeight]
+
+        #Variable to store the point to draw
+        drawPoint = [0,0]
+
+        #Draw top line
+        drawPoint[0] = int(topLeftCorner[0]) # x axis
+        drawPoint[1] = int(topLeftCorner[1]) # y axis
+        while (drawPoint[0] < rectangle.length):
+            self.dataPoints[drawPoint[0]][drawPoint[0]] = 1
+            drawPoint[0] = drawPoint[0] + 1
+
+
+        # for i in range(rectangle.length):
+        #     for j in range(rectangle.height):
+        #         self.dataPoints[i][j] 
+        #     drawPoint[0] = drawPoint[0] + 1 #next x point
 
 
     def drawCircle(self,radius):
@@ -41,15 +66,17 @@ class Circle:
         self.perimeter = 2 * pi * radius
 
 class Rectangle:
-    def __init__(self,length,width):
+    def __init__(self,length,height):
         self.length = length
-        self.width = width
-        self.area = length * width
-        self.perimeter = (length ** 2) + (width ** 2)
+        self.height = height
+        self.area = length * height
+        self.perimeter = (length ** 2) + (height ** 2)
 
 
 
 def tester():
-    testCanvas = Canvas(25,25)
+    testCanvas = Canvas(20,20)
+    testCanvas.toString()
+    testCanvas.drawRectangle(10,10)
     testCanvas.toString()
 tester()
