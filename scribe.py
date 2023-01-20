@@ -75,7 +75,7 @@ class Rectangle:
 
 
 def tester():
-    testCanvas = Canvas(20,20)
+    testCanvas = Canvas(20,10)
     testCanvas.toString()
     testCanvas.drawRectangle(10,10)
     testCanvas.toString()
